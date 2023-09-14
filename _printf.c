@@ -7,7 +7,7 @@
 */
 void print_char(char c, int *len)
 {
-	return(write(1, &c, *len));
+	return (write(1, &c, *len));
 }
 
 /**
@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 			print_char(format[i], 1);
 			char_count++;
 		}
-		else if(fromat[i] == '%')
+		else if (fromat[i] == '%')
 		{
 			i++;
 			if (format[i] == 'c')
@@ -43,9 +43,10 @@ int _printf(const char *format, ...)
 				print_char(c, 1);
 				char_count++;
 			}
-			else if(format[i] == 's')
+			else if (format[i] == 's')
 			{
 				char *ptr = va_arg(list, char*);
+
 				for (str_len = 0; ptr[str_len] != '\0'; str_len++)
 					;
 				print_char(ptr, str_len);
@@ -58,8 +59,6 @@ int _printf(const char *format, ...)
 			}
 		}
 	}
-
 	va_end(list);
-
 	return (char_count);
 }

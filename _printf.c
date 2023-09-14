@@ -1,9 +1,9 @@
 #include "main.h"
 
 /***/
-void print_char(char c)
+void print_char(char c, int *len)
 {
-	return(write(1, &c, 1));
+	return(write(1, &c, *len));
 }
 
 /**
@@ -14,7 +14,8 @@ void print_char(char c)
 
 int _printf(const char *format, ...)
 {
-	int char_count = 0, i;
+	int char_count = 0, num, str_len, i;
+	char c;
 	va_list list;
 
 	if (format == NULL)
@@ -22,15 +23,39 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	for (i = 0; format && format != NULL; i++)
+	for (i = 0; format && format[i] != NULL; i++)
 	{
 		if (format[i] != '%')
 		{
-			print_char(format);
+			print_char(format[i], 1);
+			char_count++;
 		}
 		else if(fromat[i] == '%')
+		{
 			i++;
+			if (format[i] == 'c')
+			{
+				c = va_arg(list, char);
+				print_char(c, 1);
+				char_count++;
+			}
+			else if(format[i] == 's')
+			{
+				c = va_arg(list, char);
+				for (str_len = 0; str[str_len] != '\0'; str_len++)
+					;
+				print_char(c, str_len);
+				char_count += str_len;
+			}
+			else if (format[i] == '%')
+			{
+				print_char(format[i], 1);
+				char_count++;
+			}
+		}
 	}
 
 	va_end(list);
+
+	return (char_count);
 }

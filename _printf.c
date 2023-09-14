@@ -1,6 +1,10 @@
 #include "main.h"
 
-/***/
+/**
+ * print_char - prints the character
+ * @c: char input
+ * @len: length
+*/
 void print_char(char c, int *len)
 {
 	return(write(1, &c, *len));
@@ -23,7 +27,7 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	for (i = 0; format && format[i] != NULL; i++)
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
@@ -35,16 +39,16 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == 'c')
 			{
-				c = va_arg(list, char);
+				c = va_arg(list, int);
 				print_char(c, 1);
 				char_count++;
 			}
 			else if(format[i] == 's')
 			{
-				c = va_arg(list, char);
-				for (str_len = 0; str[str_len] != '\0'; str_len++)
+				char *ptr = va_arg(list, char*);
+				for (str_len = 0; ptr[str_len] != '\0'; str_len++)
 					;
-				print_char(c, str_len);
+				print_char(ptr, str_len);
 				char_count += str_len;
 			}
 			else if (format[i] == '%')

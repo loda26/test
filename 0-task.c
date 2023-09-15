@@ -1,18 +1,6 @@
 #include "main.h"
 
 /**
- * print_char - prints the character
- * @c: char input
- * @len: length
-*/
-void print_char(char c, int *len)
-{
-	if (*len > 0)
-		write(1, &c, *len);
-	*len = 0;
-}
-
-/**
  * _printf - printf function
  * @format: input format
  * loda and alaa code ^_^
@@ -21,15 +9,14 @@ void print_char(char c, int *len)
 
 int _printf(const char *format, ...)
 {
-	int char_count = 0, one = 1, str_len, i;
+	int char_count = 0, i;
 	char c;
 	va_list list;
 
-	if (format == NULL)
-		return (1);
-
 	va_start(list, format);
 
+	if (format == NULL)
+		return (-1);
 	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')

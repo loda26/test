@@ -7,7 +7,9 @@
 */
 void print_char(char c, int *len)
 {
-	return (write(1, &c, *len));
+	if (*len > 0)
+		write(1, &c, *len);
+	*len = 0;
 }
 
 /**
@@ -19,7 +21,7 @@ void print_char(char c, int *len)
 
 int _printf(const char *format, ...)
 {
-	int char_count = 0, num, str_len, i;
+	int char_count = 0, one = 1, str_len, i;
 	char c;
 	va_list list;
 
@@ -32,16 +34,16 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			print_char(format[i], 1);
+			print_char(format[i], one);
 			char_count++;
 		}
-		else if (fromat[i] == '%')
+		else if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == 'c')
 			{
 				c = va_arg(list, int);
-				print_char(c, 1);
+				print_char(c, one);
 				char_count++;
 			}
 			else if (format[i] == 's')
@@ -55,7 +57,7 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == '%')
 			{
-				print_char(format[i], 1);
+				print_char(format[i], one);
 				char_count++;
 			}
 		}

@@ -13,6 +13,7 @@ void print_char(char c, int *len)
 /**
  * _printf - printf function
  * @format: input format
+ * loda and alaa code ^_^
  * Return: printed chars
 */
 

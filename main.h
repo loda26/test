@@ -11,7 +11,7 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 
 /* print_function.c */
-int print_str(va_list list, para_t *para);
-int print_int(va_list list, para_t *para);
+int print_str(va_list list);
+int print_int(va_list list);
 
 #endif

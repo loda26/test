@@ -9,8 +9,8 @@
 
 int _printf(const char *format, ...)
 {
-	int char_count = 0, i;
-	char c, *str;
+	int char_count = 0, i, j, num, digits, real;
+	char c, *str, array[100];
 	va_list list;
 
 	va_start(list, format);
@@ -47,6 +47,24 @@ int _printf(const char *format, ...)
 			{
 				_putchar('%');
 				char_count++;
+			}
+			else if (format[i] == 'i' || format [i] == 'd')
+			{
+				num = va_arg(list, int);
+				digits = 0;
+				real = num;
+				while (real != 0)
+				{
+					real /= 10;
+					digits++;
+				}
+				real = num;
+				for (j = digits - 1; j >= 0; j--)
+				{
+					array[j] = '0' + (real % 10);
+					real /= 10;
+				}
+				char_count += write(1, array, digits);
 			}
 		}
 	}

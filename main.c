@@ -13,4 +13,6 @@ int main(void)
 	_printf("%c\n", 'v');
 	_printf("%s\n", "String");
 	_printf("%%\n");
+	_printf("no = %i\n", 10);
+	_printf("no = %d\n", 100);
 }

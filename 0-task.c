@@ -48,7 +48,7 @@ int _printf(const char *format, ...)
 				_putchar('%');
 				char_count++;
 			}
-			else if (format[i] == 'i' || format [i] == 'd')
+			else if (format[i] == 'i' || format[i] == 'd')
 			{
 				num = va_arg(list, int);
 				digits = 0;

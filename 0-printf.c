@@ -12,11 +12,10 @@ int _printf(const char *format, ...)
 va_list ptr;
 char *string;
 int c, n = 0;
+type = 0, printed = 0;
 va_start(ptr, format);
 while (format && format[n])
-{
 n++;
-}
 while (format && format[c])
 {
 if (format[c] == '%')
@@ -38,6 +37,11 @@ _putchar(*string);
 if (format[c] == '%')
 {
 _putchar('%');
+}
+else if (format[c] == 'd' && format[c] == 'i')
+{
+type = va_arg(ptr, int);
+printed = print_int(type);
 }
 }
 c++;

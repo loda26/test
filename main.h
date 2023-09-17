@@ -6,6 +6,7 @@
 
 /*_printf.c 0-task*/
 int _printf(const char *format, ...);
+int _print(va_list ptr);
 
 /*_putchar.c function*/
 int _putchar(char c);

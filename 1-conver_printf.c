@@ -1,46 +1,26 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
 /**
-*_print - print conversion specifiers
-*@ptr: a pointer
-*Description:Handle the following conversion specifiers:i, d
-*Return: type of specifiers
+*print_int - print integer numbers
+*@type: type of conversion specifiers
+*Description: Handle the following conversion specifiers: d, i
+*Return: value
 */
-int _print(va_list ptr)
+int print_int(type)
 {
-char *string = va_arg(ptr, char *);
-char *format = va_arg(ptr, char *);
-int c, n;
-int d = 0, i = 0;
-if (format == NULL)
-return (-1);
-if (format[n] && string[c])
+int a[50], n, i;
+type = va_ar(ptr, int);
+int count = 0;
+if (type > 0)
 {
-n++;
-c++;
+if (type % 10 == 0)
+{
+count++;
 }
-for (c = 1; string[c] != '\0'; c++)
-{
-for (n = 0; format[n] != '\0'; n++)
-{
-if (string[c] == format[n] && format[n] == '%')
-{
-c++;
-n++;
+type /= 10;
 }
-if (format[n] == 'd')
+for (n = count - 1; n >= 0; n--)
 {
-d = va_arg(ptr, int);
-_putchar(d);
+_putchar(a[n]);
 }
-if (format[n] == 'i')
-{
-i = va_arg(ptr, int);
-_putchar(i);
-}
-}
-}
-va_end(ptr);
-return (c);
+return (count);
 }

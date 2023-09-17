@@ -69,7 +69,7 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == 'i' || format [i] == 'd')
 			{
-                char_count += print_int(list);
+		                char_count += print_int(list);
 			}
 		}
 	}

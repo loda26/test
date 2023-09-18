@@ -1,44 +1,40 @@
-/***	print integer function	***/
+#include "main.h"
+
 /**
- * print_int - print integer
- * @list: input
- * Return: integer
- */
-int print_int(va_list list)
+ * _printf - printf function
+ * @format: input format
+ * loda and alaa code ^_^
+ * Return: printed chars
+*/
+
+int _printf(const char *format, ...)
 {
-	int n = va_arg(list, int);
-	int num, last = n % 10, digit, real = 1;
-	int  i = 1;
+	int char_count = 0, i;
+	va_list list;
 
-	n = n / 10;
-	num = n;
+	va_start(list, format);
 
-	if (last < 0)
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
-	}
-	if (num > 0)
-	{
-		while (num / 10 != 0)
+		if (format[i] != '%')
+			char_count += _putchar(format[i]);
+		else if (format[i] == '%')
 		{
-			real = real * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (real > 0)
-		{
-			digit = num / real;
-			_putchar(digit + '0');
-			num = num - (digit * real);
-			real = real / 10;
 			i++;
+			if (format[i] == 'c')
+				char_count += _putchar(va_arg(list, int));
+			else if (format[i] == 's')
+				char_count += print_str(list);
+			else if (format[i] == '%')
+				char_count += _putchar('%');
+			else if (format[i] == 'i' || format[i] == 'd')
+				char_count += print_int(list);
 		}
 	}
-	_putchar(last + '0');
-
-	return (i);
+	va_end(list);
+	return (char_count);
 }

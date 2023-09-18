@@ -1,33 +1,46 @@
 #include "main.h"
 
+/***	print integer function	***/
 /**
- * print_int - print the integer
+ * print_int - print integer
  * @list: input
  * Return: integer
-*/
+ */
 int print_int(va_list list)
 {
-	int j, num, digits, real;
-	char array[100];
+	int n = va_arg(list, int);
+	int num, last = n % 10, digit, real = 1;
+	int  i = 1;
 
-	num = va_arg(list, int);
-	digits = 0;
-	real = num;
-	if (num < 0)
+	n = n / 10;
+	num = n;
+
+	if (last < 0)
 	{
 		_putchar('-');
 		num = -num;
+		n = -n;
+		last = -last;
+		i++;
 	}
-	while (real != 0)
+	if (num > 0)
 	{
-		real /= 10;
-		digits++;
+		while (num / 10 != 0)
+		{
+			real = real * 10;
+			num = num / 10;
+		}
+		num = n;
+		while (real > 0)
+		{
+			digit = num / real;
+			_putchar(digit + '0');
+			num = num - (digit * real);
+			real = real / 10;
+			i++;
+		}
 	}
-	real = num;
-	for (j = digits - 1; j >= 0; j--)
-	{
-		array[j] = '0' + (real % 10);
-		real /= 10;
-	}
-	return (write(1, array, digits));
+	_putchar(last + '0');
+
+	return (i);
 }

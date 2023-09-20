@@ -13,5 +13,6 @@ int _putchar(char c);
 /* print_function.c */
 int print_str(va_list list);
 int print_int(va_list list);
-
+int print_integer(va_list ptr);
+int print_binary(va_list ptr);
 #endif

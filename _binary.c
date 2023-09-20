@@ -58,7 +58,7 @@ int print_binary(va_list ptr) //print binary function
     {
         _putchar(arr[n]);
     }
-    return ();
+    return (write(1, arr, counter));
 }
 int _printf(const char *format, ...)
 {

@@ -11,9 +11,13 @@ int _printf(const char *format, ...)
 {
 va_list ptr;
 char *string;
-int c, n = 0;
-type = 0, printed = 0;
+int c = 0;
+int n = 0;
 va_start(ptr, format);
+if (format[0] == '%' && format[1] == ' ' && !format[2])
+{
+return (-1);
+}
 while (format && format[n])
 n++;
 while (format && format[c])
@@ -30,19 +34,16 @@ if (format[c] == 's')
 {
 string = va_arg(ptr, char *);
 if (string != NULL)
-{
 _putchar(*string);
 }
-}
 if (format[c] == '%')
-{
 _putchar('%');
-}
-else if (format[c] == 'd' && format[c] == 'i')
-{
-type = va_arg(ptr, int);
-printed = print_int(type);
-}
+if (format[c] == 'd' && format[c] == 'i')
+c = va_arg(ptr, int);
+_putchar(c);
+if (format[c] == 'b')
+c = va_arg(ptr, int);
+_putchar(c);
 }
 c++;
 }

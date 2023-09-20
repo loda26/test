@@ -5,7 +5,7 @@
 *Description: Handle the following conversion specifiers: d, i
 *Return: value
 */
-int print_int(type)
+int print_integer(va_list ptr)
 {
 int a[50], n, i;
 type = va_ar(ptr, int);

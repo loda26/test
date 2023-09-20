@@ -1,8 +1,9 @@
 #include "main.h"
 
+/***	print strinf function	***/
 /**
  * print_str - prints the string
- * @list
+ * @list: input
  * Return: string
 */
 int print_str(va_list list)
@@ -11,11 +12,25 @@ int print_str(va_list list)
 	int str_count = 0;
 
 	str = va_arg(list, char *);
-	while (*str)
+	if (str == NULL)
 	{
-		write(1, str, 1);
-		str_count++;
-		str++;
+		str = "(null)";
+		while (*str)
+		{
+			write(1, str, 1);
+			str_count++;
+			str++;
+		}
+		return (str_count);
 	}
-	return (str_count);
+	else
+	{
+		while (*str)
+		{
+			write(1, str, 1);
+			str_count++;
+			str++;
+		}
+		return (str_count);
+	}
 }

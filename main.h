@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-/*_printf.c 0-task*/
+/*_printf.c*/
 int _printf(const char *format, ...);
 
 /*_putchar.c function*/
